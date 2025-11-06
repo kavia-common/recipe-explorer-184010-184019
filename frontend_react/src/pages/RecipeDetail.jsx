@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import ErrorState from "../components/ErrorState";
 import { useRecipes } from "../state/recipesContext";
 import { getIsDemoMode } from "../api/recipes";
+import { normalizeRecipeImage, getPlaceholder } from "../utils/image";
 
 // PUBLIC_INTERFACE
 function RecipeDetail() {
@@ -28,6 +29,8 @@ function RecipeDetail() {
   if (!selectedRecipe) return <div className="container"><div className="empty">Recipe not found.</div></div>;
 
   const { title, image, tags = [], ingredients = [], instructions = "" } = selectedRecipe;
+  const imgSrc = normalizeRecipeImage(image);
+  const placeholder = getPlaceholder("detail");
 
   return (
     <div className="container">
@@ -38,14 +41,21 @@ function RecipeDetail() {
       <article className="recipe-detail" aria-label="Recipe details">
         <div className="detail-hero">
           <img
-            src={image || ""}
+            src={imgSrc}
             alt={title || "Recipe image"}
             loading="lazy"
             decoding="async"
             onError={(e) => {
+              if (e.currentTarget.dataset.fallbackTried !== "true") {
+                e.currentTarget.dataset.fallbackTried = "true";
+                e.currentTarget.src = placeholder;
+                return;
+              }
               e.currentTarget.src =
                 "data:image/svg+xml;utf8," +
-                encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='700'><rect width='100%' height='100%' fill='%2322262f'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%239ca3af' font-family='Arial' font-size='24'>No image available</text></svg>`);
+                encodeURIComponent(
+                  `<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='700'><rect width='100%' height='100%' fill='%2322262f'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%239ca3af' font-family='Arial' font-size='24'>No image available</text></svg>`
+                );
             }}
           />
           <div className="overlay" aria-hidden="true"></div>
