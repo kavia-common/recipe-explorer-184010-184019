@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import TagPills from "../components/TagPills";
 import Loader from "../components/Loader";
 import ErrorState from "../components/ErrorState";
 import { useRecipes } from "../state/recipesContext";
+import { getIsDemoMode } from "../api/recipes";
 
 // PUBLIC_INTERFACE
 function RecipeDetail() {
@@ -15,6 +16,8 @@ function RecipeDetail() {
     state: { selectedRecipe, loading, error },
     actions: { fetchRecipeDetail },
   } = useRecipes();
+
+  const demo = useMemo(() => getIsDemoMode(), []);
 
   useEffect(() => {
     if (id) fetchRecipeDetail(id);
@@ -30,6 +33,7 @@ function RecipeDetail() {
     <div className="container">
       <p style={{ marginBottom: 16 }}>
         <Link to="/" className="back-link" aria-label="Back to list">← Back to recipes</Link>
+        {demo && <span style={{ marginLeft: 8, fontSize: 12, opacity: 0.7 }}>(Demo data)</span>}
       </p>
       <article className="recipe-detail" aria-label="Recipe details">
         <header className="recipe-detail-header">

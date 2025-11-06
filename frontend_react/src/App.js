@@ -4,6 +4,7 @@ import { AppRouter } from "./routes/AppRouter";
 import { RecipesProvider } from "./state/recipesContext";
 import Navbar from "./components/Navbar";
 import { injectThemeCSSVariables } from "./theme/theme";
+import { getIsDemoMode } from "./api/recipes";
 
 // PUBLIC_INTERFACE
 function App() {
@@ -12,6 +13,7 @@ function App() {
    * renders top navigation and routed views.
    */
   const [theme, setTheme] = useState("light");
+  const [demo, setDemo] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -20,6 +22,7 @@ function App() {
   useEffect(() => {
     // Inject CSS variables based on Ocean Professional theme tokens
     injectThemeCSSVariables();
+    setDemo(getIsDemoMode());
   }, []);
 
   // PUBLIC_INTERFACE
@@ -31,6 +34,11 @@ function App() {
     <RecipesProvider>
       <div className="App">
         <Navbar theme={theme} onToggleTheme={toggleTheme} />
+        {demo && (
+          <div className="demo-banner" role="note" aria-label="Demo mode enabled">
+            <span className="demo-badge">🧪 Demo Mode Active — using local sample data</span>
+          </div>
+        )}
         <main className="app-main">
           <AppRouter />
         </main>

@@ -1,0 +1,149 @@
+{
+  "items": [
+    {
+      "id": "classic-spaghetti-bolognese",
+      "title": "Classic Spaghetti Bolognese",
+      "image": "/assets/placeholder-recipe-1.jpg",
+      "tags": ["Italian", "Pasta", "Beef"],
+      "ingredients": [
+        "400g spaghetti",
+        "2 tbsp olive oil",
+        "1 onion, finely chopped",
+        "2 garlic cloves, minced",
+        "500g ground beef",
+        "400g canned tomatoes",
+        "2 tbsp tomato paste",
+        "1 tsp dried oregano",
+        "Salt and pepper to taste",
+        "Fresh basil to serve",
+        "Parmesan cheese, grated"
+      ],
+      "instructions": "1. Cook spaghetti in salted boiling water until al dente.\n2. Heat olive oil in a pan, sauté onion and garlic until soft.\n3. Add ground beef, cook until browned. Stir in tomato paste, tomatoes, and oregano.\n4. Simmer 15–20 minutes, season with salt and pepper.\n5. Serve over spaghetti with basil and parmesan."
+    },
+    {
+      "id": "lemon-herb-roast-chicken",
+      "title": "Lemon Herb Roast Chicken",
+      "image": "/assets/placeholder-recipe-2.jpg",
+      "tags": ["Chicken", "Roast", "Gluten-Free"],
+      "ingredients": [
+        "1 whole chicken (1.5kg)",
+        "2 lemons",
+        "4 garlic cloves, crushed",
+        "2 tbsp olive oil",
+        "1 tsp dried thyme",
+        "1 tsp dried rosemary",
+        "Salt and pepper"
+      ],
+      "instructions": "1. Preheat oven to 200°C (400°F).\n2. Mix olive oil, garlic, thyme, rosemary, salt, and pepper.\n3. Rub chicken with mixture; stuff cavity with lemon halves.\n4. Roast 60–75 minutes until juices run clear.\n5. Rest 10 minutes before carving. Serve with pan juices."
+    },
+    {
+      "id": "vegetarian-buddha-bowl",
+      "title": "Vegetarian Buddha Bowl",
+      "image": "/assets/placeholder-recipe-3.jpg",
+      "tags": ["Vegetarian", "Healthy", "Gluten-Free"],
+      "ingredients": [
+        "1 cup quinoa, rinsed",
+        "1 sweet potato, cubed",
+        "1 cup chickpeas, drained",
+        "2 cups kale, chopped",
+        "1 avocado, sliced",
+        "2 tbsp olive oil",
+        "1 tsp paprika",
+        "Salt and pepper",
+        "Tahini dressing, to serve"
+      ],
+      "instructions": "1. Cook quinoa per package directions.\n2. Toss sweet potato with olive oil, paprika, salt; roast at 200°C (400°F) for 20–25 minutes.\n3. Massage kale with a little olive oil and salt.\n4. Assemble bowls with quinoa, roasted sweet potato, chickpeas, kale, and avocado.\n5. Drizzle with tahini dressing."
+    },
+    {
+      "id": "shrimp-tacos-with-slaw",
+      "title": "Shrimp Tacos with Slaw",
+      "image": "/assets/placeholder-recipe-4.jpg",
+      "tags": ["Seafood", "Tacos", "Quick"],
+      "ingredients": [
+        "400g shrimp, peeled",
+        "1 tbsp olive oil",
+        "1 tsp chili powder",
+        "1 tsp cumin",
+        "8 small tortillas",
+        "2 cups shredded cabbage",
+        "1/4 cup mayonnaise",
+        "1 lime, juiced",
+        "Salt and pepper"
+      ],
+      "instructions": "1. Mix mayo, lime juice, salt, and pepper; toss with cabbage to make slaw.\n2. Season shrimp with chili powder and cumin; sauté in olive oil until pink.\n3. Warm tortillas.\n4. Assemble tacos with shrimp and slaw. Serve with extra lime."
+    },
+    {
+      "id": "creamy-mushroom-risotto",
+      "title": "Creamy Mushroom Risotto",
+      "image": "/assets/placeholder-recipe-5.jpg",
+      "tags": ["Vegetarian", "Rice", "Comfort Food"],
+      "ingredients": [
+        "1 1/2 cups arborio rice",
+        "1 onion, diced",
+        "2 garlic cloves, minced",
+        "300g mushrooms, sliced",
+        "1/2 cup dry white wine",
+        "4 cups vegetable stock, warm",
+        "2 tbsp butter",
+        "1/2 cup parmesan, grated",
+        "2 tbsp olive oil",
+        "Salt and pepper"
+      ],
+      "instructions": "1. Heat olive oil; sauté onion and garlic until translucent. Add mushrooms and cook until browned.\n2. Stir in rice; toast 1–2 minutes. Deglaze with white wine.\n3. Add warm stock one ladle at a time, stirring until absorbed before adding more.\n4. When creamy and al dente, stir in butter and parmesan. Season to taste."
+    },
+    {
+      "id": "grilled-steak-chimichurri",
+      "title": "Grilled Steak with Chimichurri",
+      "image": "/assets/placeholder-recipe-6.jpg",
+      "tags": ["Beef", "Grill", "Low-Carb"],
+      "ingredients": [
+        "2 ribeye steaks",
+        "Salt and freshly ground pepper",
+        "1 cup parsley, finely chopped",
+        "2 tbsp oregano, chopped",
+        "3 garlic cloves, minced",
+        "1/2 cup olive oil",
+        "2 tbsp red wine vinegar",
+        "1/2 tsp red pepper flakes"
+      ],
+      "instructions": "1. Combine parsley, oregano, garlic, olive oil, vinegar, red pepper flakes, salt, and pepper to make chimichurri.\n2. Season steaks with salt and pepper; grill to desired doneness.\n3. Rest steaks 5 minutes; serve with chimichurri spooned on top."
+    },
+    {
+      "id": "chocolate-chip-cookies",
+      "title": "Chocolate Chip Cookies",
+      "image": "/assets/placeholder-recipe-7.jpg",
+      "tags": ["Dessert", "Baking", "Snack"],
+      "ingredients": [
+        "2 1/4 cups all-purpose flour",
+        "1 tsp baking soda",
+        "1/2 tsp salt",
+        "1 cup unsalted butter, softened",
+        "3/4 cup brown sugar",
+        "1/2 cup granulated sugar",
+        "2 large eggs",
+        "2 tsp vanilla extract",
+        "2 cups chocolate chips"
+      ],
+      "instructions": "1. Preheat oven to 180°C (350°F). Whisk flour, baking soda, and salt.\n2. Cream butter with sugars; beat in eggs and vanilla.\n3. Mix in dry ingredients, then chocolate chips.\n4. Scoop onto baking sheet; bake 10–12 minutes until edges are golden."
+    },
+    {
+      "id": "thai-green-curry",
+      "title": "Thai Green Curry",
+      "image": "/assets/placeholder-recipe-8.jpg",
+      "tags": ["Thai", "Curry", "Spicy"],
+      "ingredients": [
+        "2 tbsp green curry paste",
+        "400ml coconut milk",
+        "300g chicken breast, sliced",
+        "1 cup green beans",
+        "1 red bell pepper, sliced",
+        "1 tbsp fish sauce",
+        "1 tsp sugar",
+        "Fresh basil",
+        "Jasmine rice, to serve"
+      ],
+      "instructions": "1. Heat a spoon of coconut milk with curry paste until fragrant.\n2. Add remaining coconut milk; bring to simmer. Add chicken and cook through.\n3. Stir in vegetables; cook until tender-crisp.\n4. Season with fish sauce and sugar. Garnish with basil and serve over rice."
+    }
+  ],
+  "total": 8
+}
