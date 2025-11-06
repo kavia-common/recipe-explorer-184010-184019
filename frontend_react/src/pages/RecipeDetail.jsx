@@ -6,6 +6,7 @@ import ErrorState from "../components/ErrorState";
 import { useRecipes } from "../state/recipesContext";
 import { getIsDemoMode } from "../api/recipes";
 import { normalizeRecipeImage, getPlaceholder } from "../utils/image";
+import { recipeImages } from "../assets";
 
 // PUBLIC_INTERFACE
 function RecipeDetail() {
@@ -28,8 +29,11 @@ function RecipeDetail() {
   if (error && !selectedRecipe) return <div className="container"><ErrorState message={error} onRetry={() => fetchRecipeDetail(id)} /></div>;
   if (!selectedRecipe) return <div className="container"><div className="empty">Recipe not found.</div></div>;
 
-  const { title, image, tags = [], ingredients = [], instructions = "" } = selectedRecipe;
-  const imgSrc = normalizeRecipeImage(image);
+  const { title, image, imageUrl, imageKey, tags = [], ingredients = [], instructions = "" } = selectedRecipe;
+  const resolved =
+    imageUrl ||
+    (imageKey && recipeImages[imageKey]) ||
+    normalizeRecipeImage(image);
   const placeholder = getPlaceholder("detail");
 
   return (
@@ -41,7 +45,7 @@ function RecipeDetail() {
       <article className="recipe-detail" aria-label="Recipe details">
         <div className="detail-hero">
           <img
-            src={imgSrc}
+            src={resolved}
             alt={title || "Recipe image"}
             loading="lazy"
             decoding="async"

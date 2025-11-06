@@ -1,5 +1,6 @@
 import { fetchJSON } from "./client";
 import sampleData from "../data/sampleRecipes.json";
+import { getRecipeImageByKey, recipeImages, getPlaceholderImage } from "../assets";
 
 /**
 Assumed backend API schema:
@@ -14,6 +15,23 @@ GET /recipes/:id
 function isDemoMode() {
   const flag = (process.env.REACT_APP_DEMO_MODE || "").toLowerCase().trim();
   return flag === "true" || flag === "1" || (!process.env.REACT_APP_API_BASE && !process.env.REACT_APP_BACKEND_URL);
+}
+
+/**
+ * Try to infer an image key from a legacy path like "/assets/recipe-1.jpg"
+ * Returns something like "recipe-1" or undefined if not inferred.
+ */
+function toImageKeyFromPath(src) {
+  if (!src || typeof src !== "string") return undefined;
+  const m = src.match(/(?:^|\/)(recipe-\d+)\.(?:jpg|jpeg|png|webp)$/i);
+  return m ? m[1] : undefined;
+}
+
+function attachImageUrl(item) {
+  // Prefer an explicit imageKey if present, otherwise infer from image field.
+  const key = item.imageKey || toImageKeyFromPath(item.image);
+  const url = (key && getRecipeImageByKey(key)) || getPlaceholderImage();
+  return { ...item, imageKey: key, imageUrl: url };
 }
 
 function filterAndPaginateLocal({ q = "", tags = [], page = 1, pageSize = 12 }) {
@@ -33,7 +51,7 @@ function filterAndPaginateLocal({ q = "", tags = [], page = 1, pageSize = 12 }) 
 
   const total = items.length;
   const start = Math.max(0, (page - 1) * pageSize);
-  const paged = items.slice(start, start + pageSize);
+  const paged = items.slice(start, start + pageSize).map(attachImageUrl);
   return { items: paged, total };
 }
 
@@ -49,8 +67,14 @@ export async function fetchRecipes({ q = "", tags = [], page = 1, pageSize = 12 
 
   try {
     const data = await fetchJSON("/recipes", { params });
+    // When using real backend, pass through image as-is but do not break demo rendering.
+    const items = Array.isArray(data?.items) ? data.items.map((it) => {
+      // If backend provides imageKey, use module; else keep provided URL.
+      const url = it.imageKey && recipeImages[it.imageKey] ? recipeImages[it.imageKey] : (it.image || "");
+      return { ...it, imageUrl: url || getPlaceholderImage() };
+    }) : [];
     return {
-      items: Array.isArray(data?.items) ? data.items : [],
+      items,
       total: Number.isFinite(data?.total) ? data.total : 0,
     };
   } catch (err) {
@@ -67,15 +91,18 @@ export async function fetchRecipeById(id) {
   if (isDemoMode()) {
     const local = (sampleData.items || []).find((r) => r.id === id);
     if (!local) throw new Error("Recipe not found");
-    return local;
+    return attachImageUrl(local);
   }
 
   try {
     const data = await fetchJSON(`/recipes/${encodeURIComponent(id)}`);
+    const url = data?.imageKey && recipeImages[data.imageKey] ? recipeImages[data.imageKey] : (data?.image || "");
     return {
       id: data?.id ?? id,
       title: data?.title ?? "Untitled",
       image: data?.image ?? "",
+      imageKey: data?.imageKey,
+      imageUrl: url || getPlaceholderImage(),
       tags: Array.isArray(data?.tags) ? data.tags : [],
       ingredients: Array.isArray(data?.ingredients) ? data.ingredients : [],
       instructions: data?.instructions ?? "",
@@ -83,7 +110,7 @@ export async function fetchRecipeById(id) {
   } catch (err) {
     const local = (sampleData.items || []).find((r) => r.id === id);
     if (!local) throw err;
-    return local;
+    return attachImageUrl(local);
   }
 }
 

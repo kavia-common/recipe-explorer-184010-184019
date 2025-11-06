@@ -2,18 +2,23 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import TagPills from "./TagPills";
 import { normalizeRecipeImage, getPlaceholder } from "../utils/image";
+import { recipeImages } from "../assets";
 
 function RecipeCard({ recipe }) {
   const navigate = useNavigate();
   if (!recipe) return null;
 
-  const { id, title, image, tags = [] } = recipe;
+  const { id, title, image, imageUrl, imageKey, tags = [] } = recipe;
 
   const onOpen = () => {
     navigate(`/recipes/${id}`);
   };
 
-  const imgSrc = normalizeRecipeImage(image);
+  // Prefer API-provided imageUrl (module import). Fallbacks: imageKey -> map, normalize legacy `image`.
+  const resolved =
+    imageUrl ||
+    (imageKey && recipeImages[imageKey]) ||
+    normalizeRecipeImage(image);
   const placeholder = getPlaceholder("card");
 
   return (
@@ -25,12 +30,12 @@ function RecipeCard({ recipe }) {
         style={{ all: "unset", cursor: "pointer" }}
       >
         <img
-          src={imgSrc}
+          src={resolved}
           alt={title || "Recipe image"}
           loading="lazy"
           decoding="async"
           onError={(e) => {
-            // First, try static placeholder in public/assets; if that also fails, use inline SVG.
+            // First, try placeholder import; if that also fails, use inline SVG.
             if (e.currentTarget.dataset.fallbackTried !== "true") {
               e.currentTarget.dataset.fallbackTried = "true";
               e.currentTarget.src = placeholder;
