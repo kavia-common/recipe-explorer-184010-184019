@@ -33,11 +33,17 @@ function Home() {
   return (
     <div className="container">
       <section className="page-hero" aria-label="Search recipes">
-        <h1 style={{ marginTop: 0, marginBottom: 8 }}>Find your next dish</h1>
-        <p style={{ marginTop: 0, opacity: 0.8 }}>
+        <h1 style={{ marginTop: 0, marginBottom: 8, fontSize: 34 }}>Find your next dish</h1>
+        <p style={{ marginTop: 0, opacity: 0.85, maxWidth: 680 }}>
           Browse, search, and explore tasty recipes.{demo ? " (Demo data)" : ""}
         </p>
-        <SearchBar initialQuery={searchQuery} onSearch={onSearch} />
+        <div className="featured-banner" role="note" aria-label="Featured">
+          <span className="featured-dot" aria-hidden="true"></span>
+          <span>Tip: Try searching “pasta”, “curry”, or “cookies”</span>
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <SearchBar initialQuery={searchQuery} onSearch={onSearch} />
+        </div>
       </section>
 
       <RecipeGrid items={list} loading={loading} error={error} onRetry={refetchList} />

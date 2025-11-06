@@ -3,7 +3,7 @@
     {
       "id": "classic-spaghetti-bolognese",
       "title": "Classic Spaghetti Bolognese",
-      "image": "/assets/placeholder-recipe-1.jpg",
+      "image": "/assets/recipe-1.jpg",
       "tags": ["Italian", "Pasta", "Beef"],
       "ingredients": [
         "400g spaghetti",
@@ -23,7 +23,7 @@
     {
       "id": "lemon-herb-roast-chicken",
       "title": "Lemon Herb Roast Chicken",
-      "image": "/assets/placeholder-recipe-2.jpg",
+      "image": "/assets/recipe-2.jpg",
       "tags": ["Chicken", "Roast", "Gluten-Free"],
       "ingredients": [
         "1 whole chicken (1.5kg)",
@@ -39,7 +39,7 @@
     {
       "id": "vegetarian-buddha-bowl",
       "title": "Vegetarian Buddha Bowl",
-      "image": "/assets/placeholder-recipe-3.jpg",
+      "image": "/assets/recipe-3.jpg",
       "tags": ["Vegetarian", "Healthy", "Gluten-Free"],
       "ingredients": [
         "1 cup quinoa, rinsed",
@@ -57,7 +57,7 @@
     {
       "id": "shrimp-tacos-with-slaw",
       "title": "Shrimp Tacos with Slaw",
-      "image": "/assets/placeholder-recipe-4.jpg",
+      "image": "/assets/recipe-4.jpg",
       "tags": ["Seafood", "Tacos", "Quick"],
       "ingredients": [
         "400g shrimp, peeled",
@@ -75,7 +75,7 @@
     {
       "id": "creamy-mushroom-risotto",
       "title": "Creamy Mushroom Risotto",
-      "image": "/assets/placeholder-recipe-5.jpg",
+      "image": "/assets/recipe-5.jpg",
       "tags": ["Vegetarian", "Rice", "Comfort Food"],
       "ingredients": [
         "1 1/2 cups arborio rice",
@@ -94,7 +94,7 @@
     {
       "id": "grilled-steak-chimichurri",
       "title": "Grilled Steak with Chimichurri",
-      "image": "/assets/placeholder-recipe-6.jpg",
+      "image": "/assets/recipe-6.jpg",
       "tags": ["Beef", "Grill", "Low-Carb"],
       "ingredients": [
         "2 ribeye steaks",
@@ -111,7 +111,7 @@
     {
       "id": "chocolate-chip-cookies",
       "title": "Chocolate Chip Cookies",
-      "image": "/assets/placeholder-recipe-7.jpg",
+      "image": "/assets/recipe-7.jpg",
       "tags": ["Dessert", "Baking", "Snack"],
       "ingredients": [
         "2 1/4 cups all-purpose flour",
@@ -129,7 +129,7 @@
     {
       "id": "thai-green-curry",
       "title": "Thai Green Curry",
-      "image": "/assets/placeholder-recipe-8.jpg",
+      "image": "/assets/recipe-8.jpg",
       "tags": ["Thai", "Curry", "Spicy"],
       "ingredients": [
         "2 tbsp green curry paste",

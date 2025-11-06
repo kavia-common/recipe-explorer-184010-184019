@@ -14,6 +14,8 @@
   --shadow-md: 0 6px 20px rgba(0,0,0,0.08);
 
   --gradient: linear-gradient(135deg, rgba(37,99,235,0.10), #f9fafb);
+  --gradient-animated: radial-gradient(1200px 600px at 0% 0%, rgba(37,99,235,0.10), transparent 60%),
+    radial-gradient(1000px 600px at 100% 0%, rgba(245,158,11,0.10), transparent 60%);
 
   --link: var(--color-primary);
   --link-hover: #1d4ed8;
@@ -28,6 +30,18 @@
   --gradient: linear-gradient(135deg, rgba(37,99,235,0.12), #0f172a);
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
   --shadow-md: 0 10px 30px rgba(0,0,0,0.45);
+}
+
+@keyframes floatGradient {
+  0% { background-position: 0% 0%, 100% 0%; }
+  50% { background-position: 50% 0%, 50% 0%; }
+  100% { background-position: 100% 0%, 0% 0%; }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
 }
 
 .App {
@@ -48,11 +62,12 @@
   z-index: 15;
   display: flex;
   justify-content: center;
-  padding: 8px 12px;
-  background: rgba(37,99,235,0.12);
+  padding: 10px 12px;
+  background: linear-gradient(90deg, rgba(37,99,235,0.10), rgba(245,158,11,0.08));
   color: var(--color-text);
   border-bottom: 1px solid var(--border);
   font-size: 13px;
+  backdrop-filter: blur(6px);
 }
 
 .demo-badge {
@@ -124,6 +139,12 @@
   box-shadow: var(--shadow-md);
 }
 
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--color-primary) 60%, transparent);
+  outline-offset: 2px;
+  transition: outline 120ms ease;
+}
+
 .searchbar {
   display: flex;
   gap: 8px;
@@ -167,12 +188,36 @@
 }
 
 .page-hero {
+  position: relative;
+  overflow: hidden;
   background: var(--gradient);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 36px 24px;
   box-shadow: var(--shadow-sm);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  background-image: var(--gradient-animated);
+  background-size: 200% 100%, 200% 100%;
+  animation: floatGradient 18s ease infinite;
+}
+
+.featured-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--color-surface) 85%, transparent);
+}
+
+.featured-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.18);
 }
 
 .grid {
@@ -188,19 +233,23 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  will-change: transform;
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.01);
   box-shadow: var(--shadow-md);
+  border-color: color-mix(in oklab, var(--color-primary) 20%, var(--border));
 }
 
 .card img {
   width: 100%;
-  height: 180px;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   background: #e5e7eb;
+  display: block;
 }
 
 .card-body {
@@ -246,6 +295,47 @@
   padding: 24px;
   text-align: center;
   box-shadow: var(--shadow-sm);
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.skeleton-card {
+  grid-column: span 4;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.skeleton-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 37%, #e5e7eb 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.skeleton-body {
+  padding: 12px;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 37%, #e5e7eb 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+  margin: 8px 0;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .pagination {
@@ -297,6 +387,41 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.detail-hero {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.detail-hero img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(17,24,39,0.1), rgba(17,24,39,0.45));
+  pointer-events: none;
+}
+
+[data-theme="dark"] .detail-hero .overlay {
+  background: linear-gradient(to bottom, rgba(15,23,42,0.2), rgba(15,23,42,0.6));
+}
+
+.detail-hero .title-wrap {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
 .recipe-detail-img {

@@ -36,20 +36,31 @@ function RecipeDetail() {
         {demo && <span style={{ marginLeft: 8, fontSize: 12, opacity: 0.7 }}>(Demo data)</span>}
       </p>
       <article className="recipe-detail" aria-label="Recipe details">
-        <header className="recipe-detail-header">
-          <h1 style={{ margin: 0 }}>{title}</h1>
-          <TagPills tags={tags} />
+        <div className="detail-hero">
+          <img
+            src={image || ""}
+            alt={title || "Recipe image"}
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              e.currentTarget.src =
+                "data:image/svg+xml;utf8," +
+                encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='700'><rect width='100%' height='100%' fill='%2322262f'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%239ca3af' font-family='Arial' font-size='24'>No image available</text></svg>`);
+            }}
+          />
+          <div className="overlay" aria-hidden="true"></div>
+          <div className="title-wrap">
+            <h1 style={{ margin: 0, fontSize: 32, lineHeight: 1.15 }}>{title}</h1>
+            <div style={{ marginTop: 8 }}>
+              <TagPills tags={tags} />
+            </div>
+          </div>
+        </div>
+
+        <header className="recipe-detail-header" style={{ marginTop: 4 }}>
+          <div className="recipe-meta" aria-label="Recipe meta" />
         </header>
-        <img
-          className="recipe-detail-img"
-          src={image || ""}
-          alt={title || "Recipe image"}
-          onError={(e) => {
-            e.currentTarget.src =
-              "data:image/svg+xml;utf8," +
-              encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='360'><rect width='100%' height='100%' fill='%2322262f'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%239ca3af' font-family='Arial' font-size='24'>No image available</text></svg>`);
-          }}
-        />
+
         <section>
           <h2>Ingredients</h2>
           <ul>
@@ -60,7 +71,7 @@ function RecipeDetail() {
         </section>
         <section>
           <h2>Instructions</h2>
-          <p style={{ whiteSpace: "pre-wrap" }}>{instructions}</p>
+          <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.7, fontSize: 16 }}>{instructions}</p>
         </section>
       </article>
     </div>
